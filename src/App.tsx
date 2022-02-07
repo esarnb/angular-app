@@ -9,10 +9,11 @@ import "./App.css";
 import Home from "./Pages/Home/Home";
 import Portfolio from "./Pages/Portfolio/Portfolio";
 import Nav from "./Components/Nav/Nav";
+import Theme from "./Components/Theme/Theme";
 
 export default function App() {
   return (
-    <div className="page-container">
+    <Theme>
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -20,6 +21,6 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </Theme>
   );
 }
