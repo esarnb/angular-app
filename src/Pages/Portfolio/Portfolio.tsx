@@ -1,6 +1,14 @@
+import { Helmet } from "react-helmet";
+
 function Portfolio() {
   return (
-    <div>Portfolio</div>
+    <>
+       <Helmet>
+        <title>Portfolio</title>
+        <meta name="description" content="My Portfolio page through Helmet" />
+      </Helmet>
+      <div>Portfolio</div>
+    </>
   );
 }
 

@@ -1,6 +1,15 @@
+import { Helmet } from "react-helmet";
+import "./Home.css";
+
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <Helmet>
+        <title>Home</title>
+        <meta name="description" content="My Home page through Helmet" />
+      </Helmet>
+      <div>Home</div>
+    </>
   );
 }
 
