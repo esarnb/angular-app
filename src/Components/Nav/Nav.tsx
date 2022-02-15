@@ -31,7 +31,7 @@ const darkTheme = createTheme({
 });
 
 const Logo = () => {
-  return <b><i>esarnb</i></b>
+  return <b><i>blog</i></b>
 }
 
 const Nav = () => {

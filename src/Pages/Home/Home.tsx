@@ -6,7 +6,7 @@ function Home() {
     <>
       <Helmet>
         <title>Home</title>
-        <meta name="description" content="My Home page through Helmet" />
+        <meta name="description" content="My Blog homepage" />
       </Helmet>
       <div>Home</div>
     </>
