@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-
+import ProjectCards from "../../Components/ProjectCards/ProjectCards";
 function Portfolio() {
   return (
     <>
@@ -7,7 +7,7 @@ function Portfolio() {
         <title>Portfolio</title>
         <meta name="description" content="My Portfolio page through Helmet" />
       </Helmet>
-      <div>Portfolio</div>
+      <ProjectCards />
     </>
   );
 }
