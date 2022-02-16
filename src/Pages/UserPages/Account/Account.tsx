@@ -6,7 +6,7 @@ function Account() {
     <>
       <Helmet>
         <title>Account</title>
-        <meta name="description" content="My Blog Accountpage" />
+        <meta name="description" content="My Blog Account page" />
       </Helmet>
       <div>Account</div>
     </>

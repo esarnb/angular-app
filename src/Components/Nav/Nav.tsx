@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,7 +14,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./Nav.css";
-import { Login } from '@mui/icons-material';
+
+interface IData {
+  name?: string
+}
 
 const pages = [
   {path: "/", name: "Home"},
@@ -38,7 +41,7 @@ const Logo = () => {
 const Nav = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [logInOut, setLogInOut] = useState("Login");
+  const [logInOut, setLogInOut] = useState<IData | null>(null);
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -55,9 +58,24 @@ const Nav = () => {
     setAnchorElUser(null);
   };
 
+  const Navigate = useNavigate();
+
   useEffect(() => {
-    setLogInOut("Logout")
-  }, [])
+    // Mock user info pull
+    setTimeout(() => {
+      // logInOut ?? setLogInOut)
+    }, 5000);
+  })
+
+  const LoginUser = () => {
+    setLogInOut({name: "test"});
+    Navigate("/dashboard");
+  }
+  
+  const LogoutUser = () => {
+    setLogInOut(null);
+    Navigate("/login");
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -160,12 +178,14 @@ const Nav = () => {
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">
-                      <Link to={"/"+setting.toLowerCase()}>{setting}</Link>
+                      <Link className="navBtn" to={"/"+setting.toLowerCase()}>{setting}</Link>
                     </Typography>
                   </MenuItem>
                 ))}
                   <MenuItem key={"authLogin"} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{<Link to={"/"+logInOut.toLowerCase()}>{logInOut}</Link>}</Typography>
+                  {logInOut ? <Typography  className="navBtn" onClick={() => LogoutUser()}>Logout</Typography>
+                  :<Typography >{<Link to="/login" onClick={() => LoginUser()} className="navBtn">Login</Link>}</Typography>}
+                              
                   </MenuItem>
               </Menu>
             </Box>
