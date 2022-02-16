@@ -27,9 +27,9 @@ const settings = ['Dashboard','Account', 'Settings'];
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#1976d2',
+      main: '#6bdbdb',
     },
   },
 });
