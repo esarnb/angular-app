@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,12 +14,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./Nav.css";
+import { Login } from '@mui/icons-material';
 
 const pages = [
   {path: "/", name: "Home"},
-  {path: "/portfolio", name: "Portfolio"},
+  {path: "/data", name: "data"},
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Dashboard','Account', 'Settings'];
 
 const darkTheme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ const Logo = () => {
 const Nav = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [logInOut, setLogInOut] = useState("Login");
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -52,6 +54,10 @@ const Nav = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  useEffect(() => {
+    setLogInOut("Logout")
+  }, [])
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -153,9 +159,14 @@ const Nav = () => {
               >
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center">
+                      <Link to={"/"+setting.toLowerCase()}>{setting}</Link>
+                    </Typography>
                   </MenuItem>
                 ))}
+                  <MenuItem key={"authLogin"} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{<Link to={"/"+logInOut.toLowerCase()}>{logInOut}</Link>}</Typography>
+                  </MenuItem>
               </Menu>
             </Box>
           
