@@ -15,9 +15,11 @@ import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./Nav.css";
 
-interface IData {
-  name?: string
-}
+// interface IData {
+//   name?: string
+// }
+
+type IData = { name: string }
 
 const pages = [
   {path: "/", name: "Home"},
