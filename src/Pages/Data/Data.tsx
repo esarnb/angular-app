@@ -16,7 +16,13 @@ function Data() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({a: 1, b: 'Textual content'})
+        body: JSON.stringify({
+          id: 1,
+          firstname: "John",
+          lastname: "Doe",
+          avatar_url: "https://i.imgur.com/BQ7Q4L0.jpeg",
+          age: 24,
+        })
     }).then((res) => res.text()).then((data) => {
         setCreate(data);
     })
@@ -28,7 +34,10 @@ function Data() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({a: 1, b: 'Textual content'})
+        body: JSON.stringify({
+          id: 1,
+          firstname: "Play"
+        })
     }).then((res) => res.text()).then((data) => {
         setUpdate(data);
     })
