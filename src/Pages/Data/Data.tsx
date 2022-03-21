@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { CrudContext } from "../../Contexts/crud";
 import { Helmet } from "react-helmet";
 import "./Data.css";
 
 function Data() {
-    const [Create, setCreate] = useState("");
-    const [Read, setRead] = useState("");
-    const [Update, setUpdate] = useState("");
-    const [Delete, setDelete] = useState("");
+    const { crudStatus, setCrudStatus } = useContext(CrudContext);
 
-  const getRequest = () => fetch("/crud/").then(async(res) => res.text().then((data) => setRead(data)));
+  const getRequest = () => fetch("/crud/").then(async(res) => res.text().then((data) => setCrudStatus({...crudStatus, read: data})));
   const postRequest = () => {
     fetch('/crud/', {
         method: 'POST',
@@ -24,7 +22,7 @@ function Data() {
           age: 24,
         })
     }).then((res) => res.text()).then((data) => {
-        setCreate(data);
+      setCrudStatus({...crudStatus, create: data})
     })
   }
   const putRequest = () => {
@@ -39,7 +37,7 @@ function Data() {
           firstname: "Play"
         })
     }).then((res) => res.text()).then((data) => {
-        setUpdate(data);
+      setCrudStatus({...crudStatus, update: data});
     })
   }
 
@@ -52,16 +50,16 @@ function Data() {
         },
         body: JSON.stringify({a: 1, b: 'Textual content'})
     }).then((res) => res.text()).then((data) => {
-        setDelete(data);
+      setCrudStatus({...crudStatus, delete: data})
     })
   }
 
   
   useEffect(() => {
-    getRequest()
-    postRequest()
-    putRequest()
-    deleteRequest()
+    // postRequest()
+    // getRequest()
+    // putRequest()
+    // deleteRequest()
   }, [])
   
   return (
@@ -71,10 +69,10 @@ function Data() {
         <meta name="description" content="My Blog Data page" />
       </Helmet>
       <div>
-        <p>Create: {Create}</p>
-        <p>Read: {Read}</p>
-        <p>Update: {Update}</p>
-        <p>Delete: {Delete}</p>
+        <p><button onClick={() => postRequest()}>C</button>Create: {crudStatus.create}</p>
+        <p><button onClick={() => getRequest()}>R</button>Read: {crudStatus.read}</p>
+        <p><button onClick={() => putRequest()}>U</button>Update: {crudStatus.update}</p>
+        <p><button onClick={() => deleteRequest()}>D</button>Delete: {crudStatus.delete}</p>
       </div>
     </>
   );
