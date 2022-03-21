@@ -68,6 +68,7 @@ function Data() {
         <title>Data</title>
         <meta name="description" content="My Blog Data page" />
       </Helmet>
+      <a href="http://localhost:8080/swagger-ui.html" target="_blank" rel="noopener noreferrer"><h2>API Docs</h2></a>
       <div>
         <p><button onClick={() => postRequest()}>C</button>Create: {crudStatus.create}</p>
         <p><button onClick={() => getRequest()}>R</button>Read: {crudStatus.read}</p>
