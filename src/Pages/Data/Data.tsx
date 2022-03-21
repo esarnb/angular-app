@@ -26,7 +26,7 @@ function Data() {
     })
   }
   const putRequest = () => {
-    fetch('/crud/', {
+    fetch('/crud/0', {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -42,7 +42,7 @@ function Data() {
   }
 
   const deleteRequest = () => {
-    fetch('/crud/', {
+    fetch('/crud/0', {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
